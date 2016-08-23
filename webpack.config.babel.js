@@ -1,17 +1,14 @@
-import webpack from 'webpack';
-import path from 'path';
+module.exports = {
+  entry: './index.js',
 
-export default {
-  entry: './src/components/SignIn.js',
   output: {
-    path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: 'public/'
+    publicPath: ''
   },
+
   module: {
     loaders: [
-      // Used for compiling ES2015 JavaScript
-      { test: /\.js/, loader: 'babel' },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?presets[]=es2015&presets[]=react' },
       // Used for Bootstrap Less Source Files
       { test: /\.less/, loader: 'style!css!less' },
       // Used for Bootstrap Less Source Files
@@ -20,4 +17,4 @@ export default {
       { test: /\.(woff2|woff|ttf|svg|eot)$/, loader: 'file' }
     ]
   }
-};
+}
